@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="uk.gov.dwp.uc.pairtest.service.SeatsCalculatorServiceTest" time="0.011" tests="10" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="uk.gov.dwp.uc.pairtest.service.validation.ValidationServiceTest" time="0.008" tests="7" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="22"/>
     <property name="sun.jnu.encoding" value="UTF-8"/>
@@ -58,14 +58,11 @@
     <property name="socksNonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="java.class.version" value="66.0"/>
   </properties>
-  <testcase name="getNumberOfSeatsToAllocate_whenTicketTypeRequestIsSingleInfant" classname="uk.gov.dwp.uc.pairtest.service.SeatsCalculatorServiceTest" time="0.001"/>
-  <testcase name="getNumberOfSeatsToAllocate_whenTicketTypeRequestIsMultipleInfant" classname="uk.gov.dwp.uc.pairtest.service.SeatsCalculatorServiceTest" time="0"/>
-  <testcase name="getNumberOfSeatsToAllocate_whenNumberOfTicketsIsNegative" classname="uk.gov.dwp.uc.pairtest.service.SeatsCalculatorServiceTest" time="0.001"/>
-  <testcase name="getNumberOfSeatsToAllocate_whenTicketTypeRequestIsNull" classname="uk.gov.dwp.uc.pairtest.service.SeatsCalculatorServiceTest" time="0.001"/>
-  <testcase name="getNumberOfSeatsToAllocate_whenTicketTypeRequestIsMultipleAdult" classname="uk.gov.dwp.uc.pairtest.service.SeatsCalculatorServiceTest" time="0.001"/>
-  <testcase name="getNumberOfSeatsToAllocate_whenTicketTypeRequestIsMultipleChild" classname="uk.gov.dwp.uc.pairtest.service.SeatsCalculatorServiceTest" time="0"/>
-  <testcase name="getNumberOfSeatsToAllocate_whenTicketTypeRequestIsMultipleMixed" classname="uk.gov.dwp.uc.pairtest.service.SeatsCalculatorServiceTest" time="0"/>
-  <testcase name="getNumberOfSeatsToAllocate_whenTicketTypeRequestIsSingleAdult" classname="uk.gov.dwp.uc.pairtest.service.SeatsCalculatorServiceTest" time="0"/>
-  <testcase name="getNumberOfSeatsToAllocate_whenTicketTypeRequestIsSingleChild" classname="uk.gov.dwp.uc.pairtest.service.SeatsCalculatorServiceTest" time="0.001"/>
-  <testcase name="getNumberOfSeatsToAllocate_whenTicketTypeRequestIsEmpty" classname="uk.gov.dwp.uc.pairtest.service.SeatsCalculatorServiceTest" time="0.001"/>
+  <testcase name="isAdultInTicketsRequest_whenRequestContainsMultipleTypesExcludingAdult_thenReturnsFalse" classname="uk.gov.dwp.uc.pairtest.service.validation.ValidationServiceTest" time="0.002"/>
+  <testcase name="isAdultInTicketsRequest_whenRequestContainsOnlyChild_thenReturnsFalse" classname="uk.gov.dwp.uc.pairtest.service.validation.ValidationServiceTest" time="0.001"/>
+  <testcase name="isAdultInTicketsRequest_whenRequestContainsMultipleTypesIncludingAdult_thenReturnsTrue" classname="uk.gov.dwp.uc.pairtest.service.validation.ValidationServiceTest" time="0.001"/>
+  <testcase name="isAdultInTicketsRequest_whenRequestIsNull_thenThrowsIllegalArgumentException" classname="uk.gov.dwp.uc.pairtest.service.validation.ValidationServiceTest" time="0.001"/>
+  <testcase name="isAdultInTicketsRequest_whenRequestIsEmpty_thenReturnsFalse" classname="uk.gov.dwp.uc.pairtest.service.validation.ValidationServiceTest" time="0"/>
+  <testcase name="isAdultInTicketsRequest_whenRequestContainsOnlyInfant_thenReturnsFalse" classname="uk.gov.dwp.uc.pairtest.service.validation.ValidationServiceTest" time="0"/>
+  <testcase name="isAdultInTicketsRequest_whenRequestContainsAdult_thenReturnsTrue" classname="uk.gov.dwp.uc.pairtest.service.validation.ValidationServiceTest" time="0"/>
 </testsuite>
