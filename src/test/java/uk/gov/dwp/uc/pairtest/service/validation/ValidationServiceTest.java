@@ -41,6 +41,19 @@ public class ValidationServiceTest {
     }
 
     @Test
+    void isAdultInTicketsRequest_whenRequestContainsMultipleTypesExcludingAdult_thenReturnsFalse() {
+        // Given a mix of ticket types, including ADULT
+        TicketTypeRequest childRequest = new TicketTypeRequest(TicketTypeRequest.Type.CHILD, 5);
+        TicketTypeRequest infantRequest = new TicketTypeRequest(TicketTypeRequest.Type.INFANT, 3);
+
+        // When
+        boolean result = validationService.isAdultInTicketsRequest(childRequest, infantRequest);
+
+        // Then
+        assertFalse(result, "Should return false when ADULT is not present among multiple ticket types.");
+    }
+
+    @Test
     void isAdultInTicketsRequest_whenRequestContainsOnlyChild_thenReturnsFalse() {
         // Given only CHILD ticket request
         TicketTypeRequest childRequest = new TicketTypeRequest(TicketTypeRequest.Type.CHILD, 2);
