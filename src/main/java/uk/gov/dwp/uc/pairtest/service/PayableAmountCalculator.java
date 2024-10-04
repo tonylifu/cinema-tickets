@@ -1,13 +1,13 @@
 package uk.gov.dwp.uc.pairtest.service;
 
-import uk.gov.dwp.uc.pairtest.data.PriceData;
+import uk.gov.dwp.uc.pairtest.data.TicketsData;
 import uk.gov.dwp.uc.pairtest.domain.TicketTypeRequest;
 
 import java.util.Arrays;
 import java.util.Map;
 
 public class PayableAmountCalculator implements AmountCalculatorService {
-    private final Map<String, Integer> ticketPrices = PriceData.getTicketPrices();
+    private final Map<String, Integer> ticketPrices = TicketsData.getTicketPrices();
 
     @Override
     public int getTotalAmountToPay(TicketTypeRequest... ticketTypeRequests) {

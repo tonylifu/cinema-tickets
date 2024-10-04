@@ -4,9 +4,11 @@ import uk.gov.dwp.uc.pairtest.domain.TicketTypeRequest;
 
 import java.util.Map;
 
-public class PriceData {
+public class TicketsData {
 
-    private PriceData(){}
+    public static final int MAX_NO_TICKET_AT_A_TIME = 25;
+
+    private TicketsData(){}
 
     public static Map<String, Integer> getTicketPrices() {
         return Map.of(
