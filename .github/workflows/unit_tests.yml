@@ -1,6 +1,10 @@
 name: Run Unit Tests
 
+# Trigger the workflow on both pull requests and pushes to the main branch
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
@@ -10,22 +14,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout code
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
+      # Set up JDK 21
       - name: Set up JDK 21
-        uses: actions/setup-java@v2
+        uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
           java-version: '21'
 
+      # Cache Maven dependencies
       - name: Cache Maven dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
             ${{ runner.os }}-maven-
 
+      # Run unit tests
       - name: Run unit tests
         run: mvn test
