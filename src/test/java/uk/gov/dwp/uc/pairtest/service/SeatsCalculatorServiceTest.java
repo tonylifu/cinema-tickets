@@ -7,7 +7,7 @@ import uk.gov.dwp.uc.pairtest.domain.TicketTypeRequest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SeatsCalculatorServiceTest {
+public class SeatsCalculatorServiceTest {
     private SeatsCalculatorService seatsCalculatorService;
 
     @BeforeEach
