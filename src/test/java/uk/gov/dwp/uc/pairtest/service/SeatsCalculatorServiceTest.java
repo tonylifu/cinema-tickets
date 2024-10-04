@@ -16,7 +16,7 @@ public class SeatsCalculatorServiceTest {
     }
 
     @Test
-    void getNumberOfSeatsToAllocate_whenTicketTypeRequestIsEmpty() {
+    public void getNumberOfSeatsToAllocate_whenTicketTypeRequestIsEmpty() {
         //Number of tickets request - Empty
         TicketTypeRequest[] requests = {};
         int seats = seatsCalculatorService.getNumberOfSeatsToAllocate(requests);
@@ -24,7 +24,7 @@ public class SeatsCalculatorServiceTest {
     }
 
     @Test
-    void getNumberOfSeatsToAllocate_whenTicketTypeRequestIsSingleAdult() {
+    public void getNumberOfSeatsToAllocate_whenTicketTypeRequestIsSingleAdult() {
         //Number of tickets request - Single Adult
         TicketTypeRequest request = new TicketTypeRequest(TicketTypeRequest.Type.ADULT, 1);
         int seats = seatsCalculatorService.getNumberOfSeatsToAllocate(request);
@@ -32,7 +32,7 @@ public class SeatsCalculatorServiceTest {
     }
 
     @Test
-    void getNumberOfSeatsToAllocate_whenTicketTypeRequestIsMultipleAdult() {
+    public void getNumberOfSeatsToAllocate_whenTicketTypeRequestIsMultipleAdult() {
         //Number of tickets request - Single Adult
         TicketTypeRequest request = new TicketTypeRequest(TicketTypeRequest.Type.ADULT, 9);
         int seats = seatsCalculatorService.getNumberOfSeatsToAllocate(request);
@@ -40,7 +40,7 @@ public class SeatsCalculatorServiceTest {
     }
 
     @Test
-    void getNumberOfSeatsToAllocate_whenTicketTypeRequestIsSingleChild() {
+    public void getNumberOfSeatsToAllocate_whenTicketTypeRequestIsSingleChild() {
         // One child ticket
         TicketTypeRequest request = new TicketTypeRequest(TicketTypeRequest.Type.CHILD, 1);
         int seats = seatsCalculatorService.getNumberOfSeatsToAllocate(request);
@@ -48,7 +48,7 @@ public class SeatsCalculatorServiceTest {
     }
 
     @Test
-    void getNumberOfSeatsToAllocate_whenTicketTypeRequestIsMultipleChild() {
+    public void getNumberOfSeatsToAllocate_whenTicketTypeRequestIsMultipleChild() {
         // Multiple child tickets
         TicketTypeRequest request = new TicketTypeRequest(TicketTypeRequest.Type.CHILD, 5);
         int seats = seatsCalculatorService.getNumberOfSeatsToAllocate(request);
@@ -56,7 +56,7 @@ public class SeatsCalculatorServiceTest {
     }
 
     @Test
-    void getNumberOfSeatsToAllocate_whenTicketTypeRequestIsSingleInfant() {
+    public void getNumberOfSeatsToAllocate_whenTicketTypeRequestIsSingleInfant() {
         // One infant ticket
         TicketTypeRequest request = new TicketTypeRequest(TicketTypeRequest.Type.INFANT, 1);
         int seats = seatsCalculatorService.getNumberOfSeatsToAllocate(request);
@@ -64,7 +64,7 @@ public class SeatsCalculatorServiceTest {
     }
 
     @Test
-    void getNumberOfSeatsToAllocate_whenTicketTypeRequestIsMultipleInfant() {
+    public void getNumberOfSeatsToAllocate_whenTicketTypeRequestIsMultipleInfant() {
         // Multiple infant tickets
         TicketTypeRequest request = new TicketTypeRequest(TicketTypeRequest.Type.INFANT, 7);
         int seats = seatsCalculatorService.getNumberOfSeatsToAllocate(request);
@@ -72,7 +72,7 @@ public class SeatsCalculatorServiceTest {
     }
 
     @Test
-    void getNumberOfSeatsToAllocate_whenTicketTypeRequestIsMultipleMixed() {
+    public void getNumberOfSeatsToAllocate_whenTicketTypeRequestIsMultipleMixed() {
         // A mix of ticket types
         TicketTypeRequest adultRequest = new TicketTypeRequest(TicketTypeRequest.Type.ADULT, 2);
         TicketTypeRequest childRequest = new TicketTypeRequest(TicketTypeRequest.Type.CHILD, 5);
@@ -82,7 +82,7 @@ public class SeatsCalculatorServiceTest {
     }
 
     @Test
-    void getNumberOfSeatsToAllocate_whenNumberOfTicketsIsNegative() {
+    public void getNumberOfSeatsToAllocate_whenNumberOfTicketsIsNegative() {
         // Negative number of tickets (invalid scenario)
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             new TicketTypeRequest(TicketTypeRequest.Type.ADULT, -1);
@@ -91,7 +91,7 @@ public class SeatsCalculatorServiceTest {
     }
 
     @Test
-    void getNumberOfSeatsToAllocate_whenTicketTypeRequestIsNull() {
+    public void getNumberOfSeatsToAllocate_whenTicketTypeRequestIsNull() {
         // Null type should throw IllegalArgumentException
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             new TicketTypeRequest(null, 1);
