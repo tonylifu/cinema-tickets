@@ -5,6 +5,13 @@ import uk.gov.dwp.uc.pairtest.domain.TicketTypeRequest;
 public class NumberOfSeatsCalculator implements SeatsCalculatorService {
     @Override
     public int getNumberOfSeatsToAllocate(TicketTypeRequest... ticketTypeRequests) {
-        return 0;
+        int totalSeats = 0;
+        for (TicketTypeRequest request : ticketTypeRequests) {
+            if (request.getTicketType() == TicketTypeRequest.Type.ADULT ||
+                    request.getTicketType() == TicketTypeRequest.Type.CHILD) {
+                totalSeats += request.getNoOfTickets();
+            }
+        }
+        return totalSeats;
     }
 }

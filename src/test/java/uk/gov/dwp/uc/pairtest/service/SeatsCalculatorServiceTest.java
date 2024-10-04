@@ -17,9 +17,17 @@ class SeatsCalculatorServiceTest {
 
     @Test
     void getNumberOfSeatsToAllocate_whenTicketTypeRequestIsEmpty() {
-        //Number of tickets request
+        //Number of tickets request - Empty
         TicketTypeRequest[] requests = {};
         int seats = seatsCalculatorService.getNumberOfSeatsToAllocate(requests);
         assertEquals(0, seats, "Empty request should result in 0 seats.");
+    }
+
+    @Test
+    void getNumberOfSeatsToAllocate_whenTicketTypeRequestIsSingleAdult() {
+        //Number of tickets request - Single Adult
+        TicketTypeRequest request = new TicketTypeRequest(TicketTypeRequest.Type.ADULT, 1);
+        int seats = seatsCalculatorService.getNumberOfSeatsToAllocate(request);
+        assertEquals(1, seats, "One adult ticket request should require 1 seat.");
     }
 }
