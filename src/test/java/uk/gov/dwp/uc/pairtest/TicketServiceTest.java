@@ -100,7 +100,7 @@ public class TicketServiceTest {
         TicketTypeRequest adultRequest = new TicketTypeRequest(TicketTypeRequest.Type.ADULT, 2);
 
         // When
-        ticketService.purchaseTickets(1L, adultRequest, childRequest);
+        ticketService.purchaseTickets(1L, adultRequest, childRequest, infantRequest);
 
         // Then
         verify(ticketPaymentService, times(1)).makePayment(1L, 140);
