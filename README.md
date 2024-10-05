@@ -158,7 +158,7 @@ Common scenarios that can throw an InvalidPurchaseException include:
 
 ## Testing
 ### Unit Testing
-Unit tests are implemented using JUnit 5 and Mockito to ensure that each service (e.g., validation, seat calculation, amount calculation) functions correctly. Mock objects are used to isolate dependencies, allowing for focused testing of individual components.
+Unit tests are implemented using JUnit 5 and Mockito to ensure that each service (e.g., validation, seat calculation, amount calculation) functions correctly. Mock objects are used to isolate external dependencies, allowing for focused testing of the ticket service.
 
 ### GitHub Actions CI/CD Workflow
 This project integrates GitHub Actions for continuous integration. The automated workflows run unit tests every time code is pushed to the repository or when a pull request is opened.
