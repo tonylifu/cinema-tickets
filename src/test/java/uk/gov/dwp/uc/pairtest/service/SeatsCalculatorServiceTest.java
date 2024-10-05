@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import uk.gov.dwp.uc.pairtest.domain.TicketTypeRequest;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static uk.gov.dwp.uc.pairtest.exception.ExceptionMessages.NEGATIVE_NO_OF_TICKET_MESSAGE;
+import static uk.gov.dwp.uc.pairtest.exception.ExceptionMessages.NULL_TYPE_MESSAGE;
 
 public class SeatsCalculatorServiceTest {
     private SeatsCalculatorService seatsCalculatorService;
@@ -86,7 +88,7 @@ public class SeatsCalculatorServiceTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             new TicketTypeRequest(TicketTypeRequest.Type.ADULT, -1);
         });
-        assertEquals("Number of tickets cannot be negative", exception.getMessage());
+        assertEquals(NEGATIVE_NO_OF_TICKET_MESSAGE, exception.getMessage());
     }
 
     @Test
@@ -95,6 +97,6 @@ public class SeatsCalculatorServiceTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             new TicketTypeRequest(null, 1);
         });
-        assertEquals("Type cannot be null", exception.getMessage());
+        assertEquals(NULL_TYPE_MESSAGE, exception.getMessage());
     }
 }

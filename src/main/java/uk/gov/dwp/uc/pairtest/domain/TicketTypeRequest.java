@@ -2,6 +2,9 @@ package uk.gov.dwp.uc.pairtest.domain;
 
 import lombok.Getter;
 
+import static uk.gov.dwp.uc.pairtest.exception.ExceptionMessages.NEGATIVE_NO_OF_TICKET_MESSAGE;
+import static uk.gov.dwp.uc.pairtest.exception.ExceptionMessages.NULL_TYPE_MESSAGE;
+
 /**
  * Represents a request for a specific type and number of tickets.
  * This class is immutable, meaning once an instance is created, it cannot be modified.
@@ -33,10 +36,10 @@ public final class TicketTypeRequest {
      */
     public TicketTypeRequest(Type type, int noOfTickets) {
         if (type == null) {
-            throw new IllegalArgumentException("Type cannot be null");
+            throw new IllegalArgumentException(NULL_TYPE_MESSAGE);
         }
         if (noOfTickets < 0) {
-            throw new IllegalArgumentException("Number of tickets cannot be negative");
+            throw new IllegalArgumentException(NEGATIVE_NO_OF_TICKET_MESSAGE);
         }
         this.type = type;
         this.noOfTickets = noOfTickets;
