@@ -9,6 +9,7 @@ import uk.gov.dwp.uc.pairtest.service.AmountCalculatorService;
 import uk.gov.dwp.uc.pairtest.service.SeatsCalculatorService;
 import uk.gov.dwp.uc.pairtest.service.validation.ValidationService;
 import static uk.gov.dwp.uc.pairtest.data.TicketsData.MAX_NO_TICKET_AT_A_TIME;
+import static uk.gov.dwp.uc.pairtest.exception.ExceptionMessages.*;
 
 @RequiredArgsConstructor
 public class TicketServiceImpl implements TicketService {
@@ -24,28 +25,28 @@ public class TicketServiceImpl implements TicketService {
     @Override
     public void purchaseTickets(Long accountId, TicketTypeRequest... ticketTypeRequests) throws InvalidPurchaseException {
         if (ticketTypeRequests == null || ticketTypeRequests.length == 0) {
-            throw new InvalidPurchaseException("Invalid ticket request. Ticket cannot be null or empty.");
+            throw new InvalidPurchaseException(INVALID_PURCHASE_NULL_EMPTY_TICKET_MESSAGE);
         }
 
         for (TicketTypeRequest request : ticketTypeRequests) {
             if (request == null) {
-                throw new InvalidPurchaseException("Invalid ticket request. Ticket cannot contain null or empty.");
+                throw new InvalidPurchaseException(INVALID_PURCHASE_TICKET_CONTAINS_EMPTY_MESSAGE);
             }
         }
 
         if (accountId == null || accountId < 1L) {
-            throw new InvalidPurchaseException("Insufficient funds.");
+            throw new InvalidPurchaseException(INVALID_PURCHASE_INSUFFICIENT_FUNDS_MESSAGE);
         }
 
         boolean adultInTicketsRequest = validationService.isAdultInTicketsRequest(ticketTypeRequests);
         if (!adultInTicketsRequest) {
-            throw new InvalidPurchaseException("At least one adult ticket is required.");
+            throw new InvalidPurchaseException(INVALID_PURCHASE_AT_LEAST_ONE_ADULT_MESSAGE);
         }
 
         //Assumption: infant tickets request do not count toward maximum seats allowed
         int seats = seatsCalculatorService.getNumberOfSeatsToAllocate(ticketTypeRequests);
         if (seats > MAX_NO_TICKET_AT_A_TIME) {
-            throw new InvalidPurchaseException("Maximum allowed number of seats exceeded.");
+            throw new InvalidPurchaseException(INVALID_PURCHASE_MAX_NO_OF_TICKETS_MESSAGE);
         }
 
         int totalAmount = amountCalculatorService.getTotalAmountToPay(ticketTypeRequests);

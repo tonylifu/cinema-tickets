@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import uk.gov.dwp.uc.pairtest.domain.TicketTypeRequest;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static uk.gov.dwp.uc.pairtest.exception.ExceptionMessages.NULL_TICKET_REQUEST_MESSAGE;
+import static uk.gov.dwp.uc.pairtest.exception.ExceptionMessages.NULL_TYPE_MESSAGE;
 
 public class ValidationServiceTest {
     private ValidationService validationService;
@@ -92,7 +94,9 @@ public class ValidationServiceTest {
     @Test
     void isAdultInTicketsRequest_whenRequestIsNull_thenThrowsIllegalArgumentException() {
         // When & Then
-        assertThrows(IllegalArgumentException.class, () -> validationService.isAdultInTicketsRequest(null),
-                "Should throw IllegalArgumentException when request array is null.");
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            validationService.isAdultInTicketsRequest(null);
+        });
+        assertEquals(NULL_TICKET_REQUEST_MESSAGE, exception.getMessage());
     }
 }
