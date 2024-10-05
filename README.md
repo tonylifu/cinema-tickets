@@ -1,6 +1,6 @@
 # Cinema Tickets Purchase API
 ### Overview
-This project provides a ticket purchasing service through the TicketService interface, which allows users to purchase tickets by passing their account ID and ticket requests. The service ensures that all business logic is adhered to, including validation of ticket types, seat allocation, and payment processing. The project also contains services for calculating seats and the total amount payable, as well as ensuring that all ticket requests are valid before processing.
+This project provides a ticket purchasing service through the TicketService interface, which allows users to purchase tickets by passing their account ID and ticket requests. The service ensures that all business logic is adhered to, including validation of ticket types, seat allocation, and payment processing. The project also contains services for calculating seats and the total amount payable, as well as ensuring that all ticket requests are valid before processing. It includes unit testing, automated with GitHub Actions.
 
 ---
 
@@ -15,6 +15,8 @@ This project provides a ticket purchasing service through the TicketService inte
   * [Validation Service](#4-validation-service)
 * [Exception Handling](#exception-handling)
 * [Testing](#testing)
+  * [Unit Testing](#unit-testing)
+  * [GitHub Actions CI/CD Workflow](#github-actions-cicd-workflow)
   * [Cloning and Testing](#cloning-and-testing)
   * [Installation](#installation)
 
@@ -27,6 +29,7 @@ This project provides a ticket purchasing service through the TicketService inte
 * Validation: Ensures the ticket request is valid, including checking for at least one adult ticket.
 * Exception Handling: Proper exception management with custom exceptions.
 * Dependency Injection: Implements @RequiredArgsConstructor for dependency injection, simplifying object initialization.
+* Automated Testing: Unit tests are run via GitHub Actions with external dependencies isolated via mocking to ensure the integrity of the service.
 
 ---
 
@@ -154,7 +157,11 @@ Common scenarios that can throw an InvalidPurchaseException include:
 ---
 
 ## Testing
-Unit tests are implemented using JUnit 5 and Mockito to ensure the correctness of the logic and business rules. All core functionalities, including ticket purchase, seat allocation, amount calculation, and validation, are covered by tests.
+### Unit Testing
+Unit tests are implemented using JUnit 5 and Mockito to ensure that each service (e.g., validation, seat calculation, amount calculation) functions correctly. Mock objects are used to isolate dependencies, allowing for focused testing of individual components.
+
+### GitHub Actions CI/CD Workflow
+This project integrates GitHub Actions for continuous integration. The automated workflows run unit tests every time code is pushed to the repository or when a pull request is opened.
 
 ### Cloning and Testing
 ### Prerequisites
