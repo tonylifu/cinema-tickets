@@ -15,22 +15,20 @@ import uk.gov.dwp.uc.pairtest.service.validation.ValidationService;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+import static uk.gov.dwp.uc.pairtest.exception.ExceptionMessages.*;
 
 public class TicketServiceTest {
     private TicketPaymentService ticketPaymentService;
     private SeatReservationService seatReservationService;
-    private ValidationService validationService;
-    private SeatsCalculatorService seatsCalculatorService;
-    private AmountCalculatorService amountCalculatorService;
     private TicketService ticketService;
 
     @BeforeEach
     void setUp() {
         ticketPaymentService = mock(TicketPaymentService.class);
         seatReservationService = mock(SeatReservationService.class);
-        validationService = new ValidateTickets();
-        seatsCalculatorService = new NumberOfSeatsCalculator();
-        amountCalculatorService = new PayableAmountCalculator();
+        ValidationService validationService = new ValidateTickets();
+        SeatsCalculatorService seatsCalculatorService = new NumberOfSeatsCalculator();
+        AmountCalculatorService amountCalculatorService = new PayableAmountCalculator();
         ticketService = new TicketServiceImpl(
                 ticketPaymentService,
                 seatReservationService,
@@ -45,7 +43,7 @@ public class TicketServiceTest {
         // When & Then
         InvalidPurchaseException exception = assertThrows(InvalidPurchaseException.class,
                 () -> ticketService.purchaseTickets(1L));
-        assertEquals("Invalid ticket request. Ticket cannot be null or empty.", exception.getMessage());
+        assertEquals(INVALID_PURCHASE_NULL_EMPTY_TICKET_MESSAGE, exception.getMessage());
     }
 
     @Test
@@ -56,7 +54,7 @@ public class TicketServiceTest {
         // When & Then
         InvalidPurchaseException exception = assertThrows(InvalidPurchaseException.class,
                 () -> ticketService.purchaseTickets(1L, adultRequest, null));
-        assertEquals("Invalid ticket request. Ticket cannot contain null or empty.", exception.getMessage());
+        assertEquals(INVALID_PURCHASE_TICKET_CONTAINS_EMPTY_MESSAGE, exception.getMessage());
     }
 
     @Test
@@ -67,7 +65,7 @@ public class TicketServiceTest {
         // When & Then
         InvalidPurchaseException exception = assertThrows(InvalidPurchaseException.class,
                 () -> ticketService.purchaseTickets(0L, adultRequest));
-        assertEquals("Insufficient funds.", exception.getMessage());
+        assertEquals(INVALID_PURCHASE_INSUFFICIENT_FUNDS_MESSAGE, exception.getMessage());
     }
 
     @Test
@@ -78,7 +76,7 @@ public class TicketServiceTest {
         // When & Then
         InvalidPurchaseException exception = assertThrows(InvalidPurchaseException.class,
                 () -> ticketService.purchaseTickets(1L, infantRequest));
-        assertEquals("At least one adult ticket is required.", exception.getMessage());
+        assertEquals(INVALID_PURCHASE_AT_LEAST_ONE_ADULT_MESSAGE, exception.getMessage());
     }
 
     @Test
@@ -91,7 +89,7 @@ public class TicketServiceTest {
         // When & Then
         InvalidPurchaseException exception = assertThrows(InvalidPurchaseException.class,
                 () -> ticketService.purchaseTickets(1L, infantRequest, childRequest, adultRequest));
-        assertEquals("Maximum allowed number of seats exceeded.", exception.getMessage());
+        assertEquals(INVALID_PURCHASE_MAX_NO_OF_TICKETS_MESSAGE, exception.getMessage());
     }
 
     @Test
@@ -157,6 +155,6 @@ public class TicketServiceTest {
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class,
                 () -> ticketService.purchaseTickets(1L,
                         new TicketTypeRequest(TicketTypeRequest.Type.ADULT, -1)));
-        assertEquals("Number of tickets cannot be negative", exception.getMessage());
+        assertEquals(NEGATIVE_NO_OF_TICKET_MESSAGE, exception.getMessage());
     }
 }

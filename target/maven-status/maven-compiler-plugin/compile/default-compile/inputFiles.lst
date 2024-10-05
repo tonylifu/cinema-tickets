@@ -6,6 +6,7 @@
 /Users/tonylifu/code/dwp/cinema-tickets-java/src/main/java/uk/gov/dwp/uc/pairtest/TicketServiceImpl.java
 /Users/tonylifu/code/dwp/cinema-tickets-java/src/main/java/uk/gov/dwp/uc/pairtest/data/TicketsData.java
 /Users/tonylifu/code/dwp/cinema-tickets-java/src/main/java/uk/gov/dwp/uc/pairtest/domain/TicketTypeRequest.java
+/Users/tonylifu/code/dwp/cinema-tickets-java/src/main/java/uk/gov/dwp/uc/pairtest/exception/ExceptionMessages.java
 /Users/tonylifu/code/dwp/cinema-tickets-java/src/main/java/uk/gov/dwp/uc/pairtest/exception/InvalidPurchaseException.java
 /Users/tonylifu/code/dwp/cinema-tickets-java/src/main/java/uk/gov/dwp/uc/pairtest/service/AmountCalculatorService.java
 /Users/tonylifu/code/dwp/cinema-tickets-java/src/main/java/uk/gov/dwp/uc/pairtest/service/NumberOfSeatsCalculator.java
